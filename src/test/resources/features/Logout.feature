@@ -5,7 +5,8 @@ Feature: Validate on logout functionality
     When user click on profile icon
     And user click on login option
     Then verify login popup is displayed
-    When user enter valid credentials "country.name", "country.code" and "phone.number"
+    When user selects the country "country.name" with code "country.code"
+    And user enter valid credential "phone.number"
     Then verify otp popup is displayed
     When user enter the otp
     Then verify login is successful

@@ -3,9 +3,15 @@ package com.automation.pages.ui;
 public interface LoginPage {
     boolean isLoginPopupDisplayed();
 
-    void enterCountryAndPhoneNumber(String configValue, String configValue1, String value);
+    void selectCountryDetails(String countryName, String countryCode);
 
     boolean isOtpPopupDisplayed();
 
     void userEnterOtp();
+
+    void enterPhoneNumber(String phoneNumber);
+
+    void enterInvalidPhoneNumber(String phoneNumber);
+
+    boolean isErrorMessageDisplayed();
 }

@@ -1,13 +1,30 @@
 Feature: Validate login feature
 
-  Scenario: Verify user can login with valid credentials
+  Background:
     Given user open website
     When user click on profile icon
     And user click on login option
     Then verify login popup is displayed
-    When user enter valid credentials "country.name", "country.code" and "phone.number"
+
+  Scenario: Verify user can login with valid credentials
+    When user selects the country "country.name" with code "country.code"
+    And user enter valid credential "phone.number"
     Then verify otp popup is displayed
     When user enter the otp
     Then verify login is successful
+
+  Scenario Outline: Verify user cannot login with invalid credentials
+    When user selects the country "country.name" with code "country.code"
+    And user enter invalid credential "<invalid.phone.number>"
+    Then verify error message is displayed
+
+    Examples:
+      | invalid.phone.number |
+      | 86346                |
+      | 8356289103889        |
+      | 00000                |
+      | 9467                 |
+      |                      |
+
 
 
