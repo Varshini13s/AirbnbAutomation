@@ -57,7 +57,7 @@ public class WebLoginPage extends BasePage implements LoginPage {
 
     @Override
     public boolean isErrorMessageDisplayed() {
-        return errorMessage.isDisplayed() || invalidMessage.isDisplayed();
+        return isDisplayed(errorMessage) || isDisplayed(invalidMessage);
     }
 
     public boolean isOtpPopupDisplayed() {
