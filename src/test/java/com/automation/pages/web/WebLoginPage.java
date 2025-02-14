@@ -25,17 +25,39 @@ public class WebLoginPage extends BasePage implements LoginPage {
 
     String XPATH_COUNTRY_OPTION = "//select//option[text()='%s' and text()='%s']";
 
+    @FindBy(id = "phone-number-error-phone-login")
+    WebElement errorMessage;
+
+    @FindBy(xpath = "//div[@class='m1us9lga dir dir-ltr']")
+    WebElement invalidMessage;
+
     public boolean isLoginPopupDisplayed() {
         return loginText.isDisplayed();
     }
 
-    public void enterCountryAndPhoneNumber(String countryName, String countryCode, String phoneNumber) {
+    public void selectCountryDetails(String countryName, String countryCode) {
         countryDropDown.click();
         WebElement countryOption = driver.findElement(By.xpath(String.format(XPATH_COUNTRY_OPTION,countryName,countryCode)));
         countryOption.click();
+    }
+
+    @Override
+    public void enterPhoneNumber(String phoneNumber) {
         phoneNumberInput.click();
         phoneNumberInput.sendKeys(phoneNumber);
         continueButton.click();
+    }
+
+    @Override
+    public void enterInvalidPhoneNumber(String phoneNumber) {
+        phoneNumberInput.click();
+        phoneNumberInput.sendKeys(phoneNumber);
+        continueButton.click();
+    }
+
+    @Override
+    public boolean isErrorMessageDisplayed() {
+        return errorMessage.isDisplayed() || invalidMessage.isDisplayed();
     }
 
     public boolean isOtpPopupDisplayed() {
@@ -45,4 +67,5 @@ public class WebLoginPage extends BasePage implements LoginPage {
     public void userEnterOtp() {
         pause(30000);
     }
+
 }

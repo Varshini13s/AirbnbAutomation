@@ -4,6 +4,7 @@ import com.automation.pages.android.AndroidLoginPage;
 import com.automation.pages.ui.LoginPage;
 import com.automation.pages.web.WebLoginPage;
 import com.automation.utils.ConfigReader;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -15,9 +16,14 @@ public class LoginSteps extends BaseSteps{
         Assert.assertTrue(loginPage.isLoginPopupDisplayed());
     }
 
-    @When("user enter valid credentials {string}, {string} and {string}")
-    public void userEnterValidCredentials(String countryName, String countryCode, String phoneNumber) {
-        loginPage.enterCountryAndPhoneNumber(ConfigReader.getConfigValue(countryName),ConfigReader.getConfigValue(countryCode),ConfigReader.getConfigValue(phoneNumber));
+    @When("user selects the country {string} with code {string}")
+    public void userSelectCountryDetails(String countryName, String countryCode) {
+        loginPage.selectCountryDetails(ConfigReader.getConfigValue(countryName),ConfigReader.getConfigValue(countryCode));
+    }
+
+    @And("user enter valid credential {string}")
+    public void userEnterValidCredential(String phoneNumber) {
+        loginPage.enterPhoneNumber(ConfigReader.getConfigValue(phoneNumber));
     }
 
     @Then("verify otp popup is displayed")
@@ -30,4 +36,13 @@ public class LoginSteps extends BaseSteps{
         loginPage.userEnterOtp();
     }
 
+    @And("user enter invalid credential {string}")
+    public void userEnterInvalidCredential(String phoneNumber) {
+        loginPage.enterInvalidPhoneNumber(phoneNumber);
+    }
+
+    @Then("verify error message is displayed")
+    public void verifyErrorMessageIsDisplayed() {
+        Assert.assertTrue(loginPage.isErrorMessageDisplayed());
+    }
 }

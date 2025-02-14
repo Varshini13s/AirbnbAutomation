@@ -28,13 +28,16 @@ public class AndroidLoginPage extends BasePage implements LoginPage {
 
     String XPATH_COUNTRY_OPTION = "//android.widget.CheckedTextView[@resource-id='android:id/text1' and contains(@text,'%s') and contains(@text,'%s')]" ;
 
+    @FindBy(xpath = "//android.widget.TextView[@text='Invalid phone number']")
+    WebElement errorMessageText;
+
     @Override
     public boolean isLoginPopupDisplayed() {
         return loginText.isDisplayed();
     }
 
     @Override
-    public void enterCountryAndPhoneNumber(String countryName, String countryCode, String phoneNumber) {
+    public void selectCountryDetails(String countryName, String countryCode) {
         countryDropDown.click();
         while (!isDisplayed(String.format(XPATH_COUNTRY_OPTION,countryName,countryCode))){
             int x = countryDropDownBox.getLocation().getX();
@@ -45,8 +48,23 @@ public class AndroidLoginPage extends BasePage implements LoginPage {
         }
         WebElement countryOption = driver.findElement(By.xpath(String.format(XPATH_COUNTRY_OPTION,countryName,countryCode)));
         countryOption.click();
+    }
+
+    @Override
+    public void enterPhoneNumber(String phoneNumber) {
         phoneNumberInput.sendKeys(phoneNumber);
         continueButton.click();
+    }
+
+    @Override
+    public void enterInvalidPhoneNumber(String phoneNumber) {
+        phoneNumberInput.sendKeys(phoneNumber);
+        continueButton.click();
+    }
+
+    @Override
+    public boolean isErrorMessageDisplayed() {
+        return errorMessageText.isDisplayed();
     }
 
     @Override
@@ -58,4 +76,5 @@ public class AndroidLoginPage extends BasePage implements LoginPage {
     public void userEnterOtp() {
         pause(20000);
     }
+
 }
