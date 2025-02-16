@@ -12,9 +12,14 @@ import org.junit.Assert;
 
 public class HomeSteps extends BaseSteps {
 
-    @Given("user open website")
-    public void userOpenWebsite() {
+    @Given("user open website or application")
+    public void userOpenWebsiteOrApplication() {
         homePage.openApplication();
+    }
+
+    @Then("verify user is on home page")
+    public void verifyUserIsOnHomePage() {
+        Assert.assertTrue(homePage.isHomePageIsDisplayed());
     }
 
     @When("user click on profile icon")
@@ -40,5 +45,32 @@ public class HomeSteps extends BaseSteps {
     @Then("verify logout is successful")
     public void verifyLogoutIsSuccessful() {
         Assert.assertTrue(homePage.isLogoutSuccessful());
+    }
+
+    @And("verify stays button is selected")
+    public void verifyStaysButtonIsSelected() {
+        Assert.assertTrue(homePage.isStaysButtonSelected());
+    }
+
+    @When("user selects {string}, {string} and {string}")
+    public void userSelectsDetails(String destinationName, String checkinDate, String checkoutDate) {
+        homePage.selectDestination(ConfigReader.getConfigValue(destinationName));
+        homePage.selectDates(ConfigReader.getConfigValue(checkinDate),ConfigReader.getConfigValue(checkoutDate));
+    }
+
+    @And("user selects number of guests")
+    public void userSelectsNumberOfGuests() {
+        homePage.selectGuests();
+        homePage.clickOnSearchButton();
+    }
+
+    @When("user click on experiences button")
+    public void userClickOnExperiencesButton() {
+        homePage.clickOnExperiencesButton();
+    }
+
+    @Then("verify experiences button is selected")
+    public void verifyExperiencesButtonIsSelected() {
+        Assert.assertTrue(homePage.isExperiencesButtonSelected());
     }
 }

@@ -3,6 +3,7 @@ package com.automation.pages.common;
 import com.automation.utils.DriverManager;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
@@ -33,21 +34,6 @@ public class BasePage {
 
     public void waitForElementClickable(WebElement ele) {
         wait.until(ExpectedConditions.elementToBeClickable(ele));
-    }
-
-    public String getFormattedDate(String expectedFormat, String date, String currentDateFormat) {
-        try {
-            SimpleDateFormat currentFormatter = new SimpleDateFormat(currentDateFormat);
-            Date dateObject = currentFormatter.parse(date);
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(dateObject);
-
-            SimpleDateFormat expectedFormatter = new SimpleDateFormat(expectedFormat);
-            return expectedFormatter.format(calendar.getTime());
-        } catch (Exception e) {
-            throw new RuntimeException("Invalid date format " + expectedFormat);
-        }
     }
 
     public void pause(long milliSec) {
@@ -94,5 +80,25 @@ public class BasePage {
         }
     }
 
+    public String getFormattedDate(String expectedFormat, String date, String currentDateFormat) {
+        try {
+            SimpleDateFormat currentFormatter = new SimpleDateFormat(currentDateFormat);
+            Date dateObject = currentFormatter.parse(date);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dateObject);
+
+            SimpleDateFormat expectedFormatter = new SimpleDateFormat(expectedFormat);
+            return expectedFormatter.format(calendar.getTime());
+        } catch (Exception e) {
+            throw new RuntimeException("Invalid date format " + expectedFormat);
+        }
+    }
+
+    public String getTextUsingJS(WebElement ele){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String text = (String) js.executeScript("return arguments[0].textContent;", ele);
+        return text;
+    }
 
 }

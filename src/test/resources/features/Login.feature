@@ -1,7 +1,8 @@
-Feature: Validate login feature
+Feature: Validate Login Feature
 
   Background:
-    Given user open website
+    Given user open website or application
+    Then verify user is on home page
     When user click on profile icon
     And user click on login option
     Then verify login popup is displayed

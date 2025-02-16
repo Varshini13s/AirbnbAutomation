@@ -37,6 +37,9 @@ public class AndroidHomePage extends BasePage implements HomePage {
     @FindBy(xpath = "//android.widget.Button[@content-desc='Close']")
     WebElement logoutCloseButton;
 
+    @FindBy(id = "com.airbnb.android:id/search_input_bar")
+    WebElement searchButton;
+
     @Override
     public void openApplication() {
         if(isDisplayed(doNotAllowButton)){
@@ -46,6 +49,46 @@ public class AndroidHomePage extends BasePage implements HomePage {
             closeButton.click();
         }
 
+    }
+
+    @Override
+    public boolean isHomePageIsDisplayed() {
+        return loginIcon.isDisplayed() && searchButton.isDisplayed();
+    }
+
+    @Override
+    public boolean isStaysButtonSelected() {
+        return false;
+    }
+
+    @Override
+    public void selectDestination(String configValue) {
+
+    }
+
+    @Override
+    public void selectDates(String configValue, String configValue1) {
+
+    }
+
+    @Override
+    public void selectGuests() {
+
+    }
+
+    @Override
+    public void clickOnSearchButton() {
+
+    }
+
+    @Override
+    public void clickOnExperiencesButton() {
+
+    }
+
+    @Override
+    public boolean isExperiencesButtonSelected() {
+        return false;
     }
 
     @Override
