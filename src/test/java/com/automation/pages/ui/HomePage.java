@@ -14,7 +14,7 @@ public interface HomePage {
 
     boolean isLogoutSuccessful();
 
-    boolean isHomePageIsDisplayed();
+    boolean isHomePageDisplayed();
 
     boolean isStaysButtonSelected();
 

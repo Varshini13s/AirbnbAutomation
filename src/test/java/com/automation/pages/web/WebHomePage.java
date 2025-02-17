@@ -55,7 +55,7 @@ public class WebHomePage extends BasePage implements HomePage {
     }
 
     @Override
-    public boolean isHomePageIsDisplayed() {
+    public boolean isHomePageDisplayed() {
         return userProfileIcon.isDisplayed() && searchButton.isDisplayed();
     }
 

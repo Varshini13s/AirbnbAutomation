@@ -19,7 +19,7 @@ public class HomeSteps extends BaseSteps {
 
     @Then("verify user is on home page")
     public void verifyUserIsOnHomePage() {
-        Assert.assertTrue(homePage.isHomePageIsDisplayed());
+        Assert.assertTrue(homePage.isHomePageDisplayed());
     }
 
     @When("user click on profile icon")

@@ -2,6 +2,8 @@ package com.automation.pages.android;
 
 import com.automation.pages.common.BasePage;
 import com.automation.pages.ui.HomePage;
+import com.automation.utils.ConfigReader;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -38,7 +40,29 @@ public class AndroidHomePage extends BasePage implements HomePage {
     WebElement logoutCloseButton;
 
     @FindBy(id = "com.airbnb.android:id/search_input_bar")
+    WebElement searchInputBar;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Homes' or @text='Stays']")
+    WebElement staysButton;
+
+    @FindBy(css = ".android.widget.EditText")
+    WebElement destinationInput;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Next']")
+    WebElement nextButton;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Search']")
     WebElement searchButton;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Experiences']")
+    WebElement experiencesButton;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Choose dates']")
+    WebElement chooseDateButton;
+
+    String XPATH_DESTINATION_OPTION = "//android.widget.TextView[contains(@text,'%s')]";
+
+    String XPATH_INCREASE_BUTTON = "//android.widget.TextView[@text='%s']/..//following-sibling::android.widget.Button[@content-desc='increment']";
 
     @Override
     public void openApplication() {
@@ -52,43 +76,63 @@ public class AndroidHomePage extends BasePage implements HomePage {
     }
 
     @Override
-    public boolean isHomePageIsDisplayed() {
-        return loginIcon.isDisplayed() && searchButton.isDisplayed();
+    public boolean isHomePageDisplayed() {
+        return loginIcon.isDisplayed() && searchInputBar.isDisplayed();
     }
 
     @Override
     public boolean isStaysButtonSelected() {
-        return false;
+        searchInputBar.click();
+        return staysButton.getAttribute("clickable").equals("false");
     }
 
     @Override
-    public void selectDestination(String configValue) {
-
+    public void selectDestination(String destinationName) {
+        destinationInput.click();
+        destinationInput.sendKeys(destinationName);
+        pause(2000);
+        WebElement destinationOption = driver.findElement(By.xpath(String.format(XPATH_DESTINATION_OPTION,destinationName)));
+        destinationOption.click();
     }
 
     @Override
-    public void selectDates(String configValue, String configValue1) {
-
+    public void selectDates(String checkinDate, String checkoutDate) {
+        if(isDisplayed(chooseDateButton)){
+            chooseDateButton.click();
+        }
+        pause(8000);
+        nextButton.click();
     }
 
     @Override
     public void selectGuests() {
+        selectGuestNumber(ConfigReader.getConfigValue("adults.count"),"Adults");
+        selectGuestNumber(ConfigReader.getConfigValue("children.count"),"Children");
+        selectGuestNumber(ConfigReader.getConfigValue("infants.count"),"Infants");
+    }
 
+    public void selectGuestNumber(String person, String category){
+        int personCount = Integer.parseInt(person);
+        WebElement increaseButton = driver.findElement(By.xpath(String.format(XPATH_INCREASE_BUTTON,category)));
+        for (int i=0;i<personCount;i++){
+            increaseButton.click();
+        }
     }
 
     @Override
     public void clickOnSearchButton() {
-
+        searchButton.click();
     }
 
     @Override
     public void clickOnExperiencesButton() {
-
+        searchInputBar.click();
+        experiencesButton.click();
     }
 
     @Override
     public boolean isExperiencesButtonSelected() {
-        return false;
+        return experiencesButton.getAttribute("clickable").equals("false");
     }
 
     @Override
