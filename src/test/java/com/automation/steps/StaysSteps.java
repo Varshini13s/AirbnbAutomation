@@ -13,25 +13,25 @@ public class StaysSteps extends BaseSteps {
         Assert.assertTrue(staysPage.arePlacesDisplayed());
     }
 
-    @When("user click on filters button")
+    @When("user click on filters button in stays page")
     public void userClickOnFiltersButton() {
         staysPage.clickFilterButton();
     }
 
-    @Then("verify price filter is applied")
-    public void verifyPriceFilterIsApplied() {
+    @Then("verify price filter is applied to places")
+    public void verifyPriceFilterIsAppliedToPlaces() {
         staysPage.scrollOverMap();
         Assert.assertTrue(staysPage.isPriceFilterApplied());
     }
 
-    @Then("verify amenities filter is applied")
-    public void verifyAmenitiesFilterIsApplied() {
+    @Then("verify amenities filter is applied to places")
+    public void verifyAmenitiesFilterIsAppliedToPlaces() {
         staysPage.scrollOverMap();
         Assert.assertTrue(staysPage.isAmenitiesFilterApplied());
     }
 
-    @Then("verify host language filter is applied")
-    public void verifyHostLanguageFilterIsApplied() {
+    @Then("verify host language filter is applied to places")
+    public void verifyHostLanguageFilterIsAppliedToPlaces() {
         staysPage.scrollOverMap();
         Assert.assertTrue(staysPage.isHostLanguageFilterApplied());
     }
