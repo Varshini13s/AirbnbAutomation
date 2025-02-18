@@ -54,7 +54,7 @@ public class WebFilterPage extends BasePage implements FilterPage {
         hostLanguageContainer.click();
         String[] languages = hostLanguage.split(",");
         for (String language : languages) {
-            WebElement hostLanguageOption = driver.findElement(By.xpath(String.format(XPATH_HOST_LANGUAGE_OPTION,languages)));
+            WebElement hostLanguageOption = driver.findElement(By.xpath(String.format(XPATH_HOST_LANGUAGE_OPTION,language)));
             hostLanguageOption.click();
         }
     }

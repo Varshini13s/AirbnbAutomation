@@ -20,16 +20,19 @@ public class StaysSteps extends BaseSteps {
 
     @Then("verify price filter is applied")
     public void verifyPriceFilterIsApplied() {
+        staysPage.scrollOverMap();
         Assert.assertTrue(staysPage.isPriceFilterApplied());
     }
 
     @Then("verify amenities filter is applied")
     public void verifyAmenitiesFilterIsApplied() {
+        staysPage.scrollOverMap();
         Assert.assertTrue(staysPage.isAmenitiesFilterApplied());
     }
 
     @Then("verify host language filter is applied")
     public void verifyHostLanguageFilterIsApplied() {
+        staysPage.scrollOverMap();
         Assert.assertTrue(staysPage.isHostLanguageFilterApplied());
     }
 }

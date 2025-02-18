@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class WebExperiencesPage extends BasePage implements ExperiencesPage {
+
     @FindBy(xpath = "//span[@data-testid='stays-page-heading']")
     WebElement experiencesPageTitle;
 

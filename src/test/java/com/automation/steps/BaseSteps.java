@@ -1,9 +1,6 @@
 package com.automation.steps;
 
-import com.automation.pages.android.AndroidExperiencesPage;
-import com.automation.pages.android.AndroidHomePage;
-import com.automation.pages.android.AndroidLoginPage;
-import com.automation.pages.android.AndroidStaysPage;
+import com.automation.pages.android.*;
 import com.automation.pages.ui.*;
 import com.automation.pages.web.*;
 import com.automation.utils.ConfigReader;
@@ -29,7 +26,7 @@ public class BaseSteps {
             loginPage = new AndroidLoginPage();
             staysPage = new AndroidStaysPage();
             experiencesPage = new AndroidExperiencesPage();
-            filterPage = new WebFilterPage();
+            filterPage = new AndroidFilterPage();
         }
     }
 }

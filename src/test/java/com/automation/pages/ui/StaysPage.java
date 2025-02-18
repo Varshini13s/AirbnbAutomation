@@ -10,4 +10,9 @@ public interface StaysPage {
     boolean isAmenitiesFilterApplied();
 
     boolean isHostLanguageFilterApplied();
+
+    default void scrollOverMap() {
+    }
+
+
 }

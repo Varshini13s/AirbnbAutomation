@@ -7,6 +7,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.Duration;
+
 public class AndroidHomePage extends BasePage implements HomePage {
 
     @FindBy(id = "com.android.permissioncontroller:id/permission_deny_button")
@@ -100,7 +104,14 @@ public class AndroidHomePage extends BasePage implements HomePage {
         if(isDisplayed(chooseDateButton)){
             chooseDateButton.click();
         }
-        pause(8000);
+        pause(5000);
+        String pageSource = driver.getPageSource();
+        try (FileWriter fileWriter = new FileWriter("pageSource1.html")) {
+            fileWriter.write(pageSource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //pause(8000);
         nextButton.click();
     }
 

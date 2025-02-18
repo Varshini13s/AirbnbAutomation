@@ -23,13 +23,13 @@ public class WebLoginPage extends BasePage implements LoginPage {
     @FindBy(xpath = "//div[text()='Confirm your number']")
     WebElement numberConfirmationText;
 
-    String XPATH_COUNTRY_OPTION = "//select//option[text()='%s' and text()='%s']";
-
     @FindBy(id = "phone-number-error-phone-login")
     WebElement errorMessage;
 
     @FindBy(xpath = "//div[@class='m1us9lga dir dir-ltr']")
     WebElement invalidMessage;
+
+    String XPATH_COUNTRY_OPTION = "//select//option[text()='%s' and text()='%s']";
 
     public boolean isLoginPopupDisplayed() {
         return loginText.isDisplayed();

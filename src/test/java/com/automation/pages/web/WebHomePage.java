@@ -40,15 +40,15 @@ public class WebHomePage extends BasePage implements HomePage {
     @FindBy(xpath = "//button[@aria-label='Move forward to change to the next month.']")
     WebElement nextBtn;
 
-    String XPATH_DATE_VALUE = "//button[contains(@aria-label,'%s,')]";
-
     @FindBy(xpath = "//div[@data-testid='structured-search-input-field-guests-button']")
     WebElement addGuestsInput;
 
-    String XPATH_INCREASE_BUTTON = "//button[@data-testid='stepper-%s-increase-button']";
-
     @FindBy(xpath = "//button[@id='search-block-tab-EXPERIENCES']")
     WebElement experiencesButton;
+
+    String XPATH_DATE_VALUE = "//button[contains(@aria-label,'%s,')]";
+
+    String XPATH_INCREASE_BUTTON = "//button[@data-testid='stepper-%s-increase-button']";
 
     public void openApplication() {
         driver.get(ConfigReader.getConfigValue("application.url"));

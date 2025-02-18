@@ -26,10 +26,10 @@ public class AndroidLoginPage extends BasePage implements LoginPage {
     @FindBy(xpath = "//android.widget.TextView[@text='Confirm your number']")
     WebElement numberConfirmationText;
 
-    String XPATH_COUNTRY_OPTION = "//android.widget.CheckedTextView[@resource-id='android:id/text1' and contains(@text,'%s') and contains(@text,'%s')]" ;
-
     @FindBy(xpath = "//android.widget.TextView[@text='Invalid phone number']")
     WebElement errorMessageText;
+
+    String XPATH_COUNTRY_OPTION = "//android.widget.CheckedTextView[@resource-id='android:id/text1' and contains(@text,'%s') and contains(@text,'%s')]";
 
     @Override
     public boolean isLoginPopupDisplayed() {
