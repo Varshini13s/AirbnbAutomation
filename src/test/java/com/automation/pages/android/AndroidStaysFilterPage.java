@@ -1,19 +1,19 @@
 package com.automation.pages.android;
 
 import com.automation.pages.common.BasePage;
-import com.automation.pages.ui.FilterPage;
+import com.automation.pages.ui.StaysFilterPage;
 import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AndroidFilterPage extends BasePage implements FilterPage {
+public class AndroidStaysFilterPage extends BasePage implements StaysFilterPage {
 
     @FindBy(xpath = "//android.widget.EditText[@content-desc='Minimum']")
-    WebElement minimumPriceInput;
+    WebElement staysMinimumPriceInput;
 
     @FindBy(xpath = "//android.widget.EditText[@content-desc='Maximum']")
-    WebElement maximumPriceInput;
+    WebElement staysMaximumPriceInput;
 
     @FindBy(xpath = "//android.view.View[@content-desc='Filters']/android.view.View/android.view.View/android.view.View[1]")
     WebElement filterLayout;
@@ -33,13 +33,13 @@ public class AndroidFilterPage extends BasePage implements FilterPage {
 
     @Override
     public void selectPriceRange(String minimumPrice, String maximumPrice) {
-        while (!isDisplayed(minimumPriceInput)){
+        while (!isDisplayed(staysMinimumPriceInput)){
             scrollFilterLayout();
         }
-        minimumPriceInput.clear();
-        minimumPriceInput.sendKeys(minimumPrice);
-        maximumPriceInput.clear();
-        maximumPriceInput.sendKeys(maximumPrice);
+        staysMinimumPriceInput.clear();
+        staysMinimumPriceInput.sendKeys(minimumPrice);
+        staysMaximumPriceInput.clear();
+        staysMaximumPriceInput.sendKeys(maximumPrice);
     }
 
     @Override

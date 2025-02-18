@@ -55,7 +55,7 @@ public class WebStaysPage extends BasePage implements StaysPage {
         int minimumPrice = Integer.parseInt(ConfigReader.getConfigValue("minimum.price"));
         int maximumPrice = Integer.parseInt(ConfigReader.getConfigValue("maximum.price"));
         for(int i=0;i< priceList.size();i++){
-            int price = Integer.parseInt(priceList.get(i).getText().replace("₹","").replace(",","").trim());
+            int price = Integer.parseInt(priceList.get(i).getText().replaceAll("[^0-9]",""));
             if(! (minimumPrice < price && price < maximumPrice)){
                 return false;
             }

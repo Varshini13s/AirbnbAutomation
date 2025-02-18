@@ -9,19 +9,19 @@ Feature: Validate Stays Filter Options
     Then verify places are displayed
 
   Scenario: Verify user can search places by applying price filter
-    When user click on filters button
+    When user click on filters button in stays page
     And user selects prices "minimum.price" and "maximum.price"
-    Then verify price filter is applied
+    Then verify price filter is applied to places
 
   Scenario: Verify user can search places by applying amenities filter
-    When user click on filters button
+    When user click on filters button in stays page
     And user selects amenities "amenities.option"
-    Then verify amenities filter is applied
+    Then verify amenities filter is applied to places
 
   Scenario: Verify user can search places by applying host language filter
-    When user click on filters button
+    When user click on filters button in stays page
     And user selects language "host.language"
-    Then verify host language filter is applied
+    Then verify host language filter is applied to places
 
 
 

@@ -6,6 +6,7 @@ import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class WebHomePage extends BasePage implements HomePage {
@@ -31,8 +32,7 @@ public class WebHomePage extends BasePage implements HomePage {
     @FindBy(id = "bigsearch-query-location-input")
     WebElement destinationInput;
 
-    @FindBy(id = "bigsearch-query-location-suggestion-0")
-    WebElement destinationOption;
+    String XPATH_DESTINATION_OPTION = "//b[@class='b1viecjw atm_cs_10d11i2 dir dir-ltr' and contains(text(),'%s')]";
 
     @FindBy(xpath = "//div[@data-testid='structured-search-input-field-dates-panel']//h2")
     WebElement monthAndYear;
@@ -79,7 +79,7 @@ public class WebHomePage extends BasePage implements HomePage {
 
     @Override
     public boolean isLogoutSuccessful() {
-        pause(5000);
+        pause(2000);
         userProfileIcon.click();
         return loginOption.isDisplayed();
     }
@@ -93,7 +93,8 @@ public class WebHomePage extends BasePage implements HomePage {
     public void selectDestination(String destinationName) {
         waitForElementClickable(destinationInput);
         destinationInput.sendKeys(destinationName);
-        pause(2000);
+        WebElement destinationOption = driver.findElement(By.xpath(String.format(XPATH_DESTINATION_OPTION,destinationName)));
+        waitForElementVisible(destinationOption);
         destinationOption.click();
     }
 
@@ -110,7 +111,7 @@ public class WebHomePage extends BasePage implements HomePage {
             System.out.println(expMonthYear);
             System.out.println(actMonthYear);
             nextBtn.click();
-            pause(5000);
+            pause(2000);
             actMonthYear = monthAndYear.getText();
         }
 

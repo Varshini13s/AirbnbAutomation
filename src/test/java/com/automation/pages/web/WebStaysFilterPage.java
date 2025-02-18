@@ -1,13 +1,13 @@
 package com.automation.pages.web;
 
 import com.automation.pages.common.BasePage;
-import com.automation.pages.ui.FilterPage;
+import com.automation.pages.ui.StaysFilterPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class WebFilterPage extends BasePage implements FilterPage {
+public class WebStaysFilterPage extends BasePage implements StaysFilterPage {
 
     @FindBy(xpath = "//input[@id='price_filter_min']")
     WebElement minimumPriceInput;
@@ -30,6 +30,7 @@ public class WebFilterPage extends BasePage implements FilterPage {
 
     @Override
     public void selectPriceRange(String minimumPrice, String maximumPrice) {
+        minimumPriceInput.click();
         actions.moveToElement(minimumPriceInput).click().keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).perform();
         actions.sendKeys(Keys.BACK_SPACE).perform();
         minimumPriceInput.sendKeys(minimumPrice);
