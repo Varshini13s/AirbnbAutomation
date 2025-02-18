@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class WebHomePage extends BasePage implements HomePage {
 
-    @FindBy(xpath = "//button[@data-tooltip-anchor-id='headernav-profile-button']//div[contains(@class,'fs7xov7')]")
+    @FindBy(xpath = "//button[@aria-label='Main navigation menu']")
     WebElement userProfileIcon;
 
     @FindBy(xpath = "//div[text()='Log in']")
@@ -79,8 +79,8 @@ public class WebHomePage extends BasePage implements HomePage {
 
     @Override
     public boolean isLogoutSuccessful() {
-        pause(5000);
-        userProfileIcon.click();
+        pause(2000);
+        clickByJs(userProfileIcon);
         return loginOption.isDisplayed();
     }
 
@@ -122,9 +122,9 @@ public class WebHomePage extends BasePage implements HomePage {
     @Override
     public void selectGuests() {
         addGuestsInput.click();
-        selectGuestNumber(ConfigReader.getConfigValue("adults.count"),"adults");
-        selectGuestNumber(ConfigReader.getConfigValue("children.count"),"children");
-        selectGuestNumber(ConfigReader.getConfigValue("infants.count"),"infants");
+        selectGuestNumber(ConfigReader.getConfigValue("adults.count"), "adults");
+        selectGuestNumber(ConfigReader.getConfigValue("children.count"), "children");
+        selectGuestNumber(ConfigReader.getConfigValue("infants.count"), "infants");
     }
 
     @Override
@@ -132,10 +132,10 @@ public class WebHomePage extends BasePage implements HomePage {
         searchButton.click();
     }
 
-    public void selectGuestNumber(String person, String category){
+    public void selectGuestNumber(String person, String category) {
         int personCount = Integer.parseInt(person);
-        WebElement increaseButton = driver.findElement(By.xpath(String.format(XPATH_INCREASE_BUTTON,category)));
-        for (int i=0;i<personCount;i++){
+        WebElement increaseButton = driver.findElement(By.xpath(String.format(XPATH_INCREASE_BUTTON, category)));
+        for (int i = 0; i < personCount; i++) {
             increaseButton.click();
         }
     }

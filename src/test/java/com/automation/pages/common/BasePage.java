@@ -48,6 +48,11 @@ public class BasePage {
         }
     }
 
+    public void clickByJs(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click()", element);
+    }
+
     public boolean isDisplayed(WebElement element) {
         try {
             setImplicitWait(10);
@@ -99,23 +104,25 @@ public class BasePage {
         }
     }
 
-    public String getTextUsingJS(WebElement ele){
+    public String getTextUsingJS(WebElement ele) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         String text = (String) js.executeScript("return arguments[0].textContent;", ele);
         return text;
     }
+
     String currentWindow;
-    public void moveToAnotherTab(){
+
+    public void moveToAnotherTab() {
         currentWindow = driver.getWindowHandle();
         Set<String> allWindow = driver.getWindowHandles();
-        for(String window : allWindow){
-            if(!window.equals(currentWindow)){
+        for (String window : allWindow) {
+            if (!window.equals(currentWindow)) {
                 driver.switchTo().window(window);
             }
         }
     }
 
-    public  void moveToCurrentTab(){
+    public void moveToCurrentTab() {
         driver.close();
         driver.switchTo().window(currentWindow);
     }
