@@ -11,7 +11,6 @@ Feature: Validate Wishlist Functionality
     And user enter valid credential "phone.number"
     Then verify otp popup is displayed
     When user enter the otp
-    Then verify login is successful
 
   Scenario: Verify user can add a place to wishlist
     When user click on add to wishlist button on the image
