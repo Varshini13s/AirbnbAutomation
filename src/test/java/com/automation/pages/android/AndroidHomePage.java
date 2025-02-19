@@ -147,6 +147,21 @@ public class AndroidHomePage extends BasePage implements HomePage {
     }
 
     @Override
+    public void createNewWishlist(String wishlist) {
+
+    }
+
+    @Override
+    public void clickOnAddToWishlistButton() {
+
+    }
+
+    @Override
+    public void clickOnWishlistsIcon() {
+
+    }
+
+    @Override
     public void clickProfileIcon() {
         loginIcon.click();
     }

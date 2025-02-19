@@ -1,8 +1,5 @@
 package com.automation.steps;
 
-import com.automation.pages.android.AndroidHomePage;
-import com.automation.pages.ui.HomePage;
-import com.automation.pages.web.WebHomePage;
 import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -73,4 +70,21 @@ public class HomeSteps extends BaseSteps {
     public void verifyExperiencesButtonIsSelected() {
         Assert.assertTrue(homePage.isExperiencesButtonSelected());
     }
+
+    @When("user click on add to wishlist button on the image")
+    public void userClickOnAddToWishlistButtonOnTheImage() {
+        homePage.clickOnAddToWishlistButton();
+    }
+
+    @And("user create new wishlist with name {string}")
+    public void userCreateNewWishlistWithName(String wishlistName) {
+        homePage.createNewWishlist(ConfigReader.getConfigValue(wishlistName));
+    }
+
+    @When("user click on wishlists icon")
+    public void userClickOnWishlistsIcon() {
+        homePage.clickProfileIcon();
+        homePage.clickOnWishlistsIcon();
+    }
+
 }

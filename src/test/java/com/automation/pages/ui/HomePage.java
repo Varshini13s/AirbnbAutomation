@@ -18,9 +18,9 @@ public interface HomePage {
 
     boolean isStaysButtonSelected();
 
-    void selectDestination(String configValue);
+    void selectDestination(String destinationName);
 
-    void selectDates(String configValue, String configValue1);
+    void selectDates(String checkinDate, String checkoutDate);
 
     void selectGuests();
 
@@ -29,4 +29,10 @@ public interface HomePage {
     void clickOnExperiencesButton();
 
     boolean isExperiencesButtonSelected();
+
+    void createNewWishlist(String wishlist);
+
+    void clickOnWishlistsIcon();
+
+    void clickOnAddToWishlistButton();
 }

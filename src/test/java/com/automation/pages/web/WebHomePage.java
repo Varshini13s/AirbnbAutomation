@@ -6,12 +6,13 @@ import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 
 public class WebHomePage extends BasePage implements HomePage {
 
-    @FindBy(xpath = "//button[@aria-label='Main navigation menu']")
+    @FindBy(xpath = "//button[@data-tooltip-anchor-id='headernav-profile-button']//div[contains(@class,'fs7xov7')]")
     WebElement userProfileIcon;
 
     @FindBy(xpath = "//div[text()='Log in']")
@@ -45,6 +46,21 @@ public class WebHomePage extends BasePage implements HomePage {
 
     @FindBy(xpath = "//button[@id='search-block-tab-EXPERIENCES']")
     WebElement experiencesButton;
+
+    @FindBy(xpath = "//button[contains(@aria-label,'Add to wishlist')]")
+    List<WebElement> addToWishlistIcon;
+
+    @FindBy(xpath = "//button[@aria-label='Create new wishlist']")
+    WebElement createNewWishlistButton;
+
+    @FindBy(id = "name-list-input-save-to-list-modal")
+    WebElement wishlistNameInput;
+
+    @FindBy(xpath = "//button[@data-testid='save-to-list-modal-create-new-modal-create-button']")
+    WebElement createButton;
+
+    @FindBy(xpath = "//div[text()='Wishlists']")
+    WebElement wishlistIcon;
 
     String XPATH_DATE_VALUE = "//button[contains(@aria-label,'%s,')]";
 
@@ -91,10 +107,8 @@ public class WebHomePage extends BasePage implements HomePage {
 
     @Override
     public void selectDestination(String destinationName) {
-//        waitForElementClickable(destinationInput);
         destinationInput.sendKeys(destinationName);
         WebElement destinationOption = driver.findElement(By.xpath(String.format(XPATH_DESTINATION_OPTION,destinationName)));
-//        waitForElementVisible(destinationOption);
         destinationOption.click();
     }
 
@@ -149,6 +163,23 @@ public class WebHomePage extends BasePage implements HomePage {
     @Override
     public boolean isExperiencesButtonSelected() {
         return experiencesButton.getAttribute("aria-selected").equals("true");
+    }
+
+    @Override
+    public void clickOnAddToWishlistButton() {
+        addToWishlistIcon.get(0).click();
+    }
+
+    @Override
+    public void createNewWishlist(String wishlistName) {
+        createNewWishlistButton.click();
+        wishlistNameInput.sendKeys(wishlistName);
+        createButton.click();
+    }
+
+    @Override
+    public void clickOnWishlistsIcon() {
+        wishlistIcon.click();
     }
 
 }

@@ -14,10 +14,10 @@ Feature: Validate Wishlist Functionality
     Then verify login is successful
 
   Scenario: Verify user can add a place to wishlist
-    When user click on wishlist button on the image
+    When user click on add to wishlist button on the image
     And user create new wishlist with name "wishlist.name"
     When user click on wishlists icon
-    Then verify the place is added to wishlists
+    Then verify wishlist with name "wishlist.name" is displayed
 
   Scenario: Verify user can delete a place from wishlist
     When user click on wishlists icon
