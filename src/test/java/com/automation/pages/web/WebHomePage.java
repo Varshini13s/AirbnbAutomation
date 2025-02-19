@@ -91,10 +91,10 @@ public class WebHomePage extends BasePage implements HomePage {
 
     @Override
     public void selectDestination(String destinationName) {
-        waitForElementClickable(destinationInput);
+//        waitForElementClickable(destinationInput);
         destinationInput.sendKeys(destinationName);
         WebElement destinationOption = driver.findElement(By.xpath(String.format(XPATH_DESTINATION_OPTION,destinationName)));
-        waitForElementVisible(destinationOption);
+//        waitForElementVisible(destinationOption);
         destinationOption.click();
     }
 
