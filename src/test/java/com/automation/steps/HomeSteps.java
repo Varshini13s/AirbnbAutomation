@@ -111,4 +111,9 @@ public class HomeSteps extends BaseSteps {
     public void verifyLanguageIsApplied(String attributeValue) {
         Assert.assertTrue(homePage.isLanguageApplied(attributeValue));
     }
+
+    @And("click on give us feedback option")
+    public void clickOnGiveUsFeedbackOption() {
+        homePage.clickFeedbackOption();
+    }
 }
