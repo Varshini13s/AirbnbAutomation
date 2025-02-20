@@ -7,10 +7,6 @@ public interface StaysPage {
 
     boolean isPriceFilterApplied();
 
-    boolean isAmenitiesFilterApplied();
-
-    boolean isHostLanguageFilterApplied();
-
     default void scrollOverMap() {
     }
 
