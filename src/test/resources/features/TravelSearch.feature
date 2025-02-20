@@ -1,3 +1,4 @@
+@web @mobile
 Feature: Validate Searching Functionality
 
   Scenario: Verify user can search in stays category

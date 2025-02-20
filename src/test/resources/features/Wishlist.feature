@@ -1,4 +1,3 @@
-
 Feature: Validate Wishlist Functionality
 
   Background:
