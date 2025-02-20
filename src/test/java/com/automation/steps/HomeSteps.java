@@ -1,6 +1,7 @@
 package com.automation.steps;
 
 import com.automation.utils.ConfigReader;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -83,8 +84,31 @@ public class HomeSteps extends BaseSteps {
 
     @When("user click on wishlists icon")
     public void userClickOnWishlistsIcon() {
-        homePage.clickProfileIcon();
         homePage.clickOnWishlistsIcon();
     }
 
+    @And("user click on settings option")
+    public void userClickOnSettingsOption() {
+        homePage.clickOnSettings();
+    }
+
+    @Then("verify currency is displayed")
+    public void verifyCurrencyIsDisplayed() {
+        Assert.assertTrue(homePage.isCurrencyApplied());
+    }
+
+    @When("user click on globe icon")
+    public void userClickOnGlobeIcon() {
+        homePage.clickGlobeIcon();
+    }
+
+    @Then("verify currency symbol is displayed")
+    public void verifyCurrencySymbolIsDisplayed() {
+        Assert.assertTrue(homePage.isCurrencyApplied());
+    }
+
+    @Then("verify language is applied using {string}")
+    public void verifyLanguageIsApplied(String attributeValue) {
+        Assert.assertTrue(homePage.isLanguageApplied(attributeValue));
+    }
 }

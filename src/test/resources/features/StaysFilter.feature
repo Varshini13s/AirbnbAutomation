@@ -20,7 +20,7 @@ Feature: Validate Stays Filter Options
 
   Scenario: Verify user can search places by applying host language filter
     When user click on filters button in stays page
-    And user selects language "host.language"
+    And user selects host language "host.language"
     Then verify host language filter is applied to places
 
 

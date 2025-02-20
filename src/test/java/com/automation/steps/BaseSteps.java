@@ -14,6 +14,9 @@ public class BaseSteps {
     StaysFilterPage staysFilterPage;
     ExperiencesFilterPage experiencesFilterPage;
     WishlistPage wishlistPage;
+    SettingsPage settingsPage;
+    CurrencyPage currencyPage;
+    CurrencyLanguagePage currencyLanguagePage;
 
     public BaseSteps(){
         if(ConfigReader.getConfigValue("platform").equals("web")){
@@ -24,6 +27,7 @@ public class BaseSteps {
             staysFilterPage = new WebStaysFilterPage();
             experiencesFilterPage = new WebExperiencesFilterPage();
             wishlistPage = new WebWishlistPage();
+            currencyLanguagePage = new WebCurrencyLanguagePage();
         }
         else{
             homePage = new AndroidHomePage();
@@ -33,6 +37,8 @@ public class BaseSteps {
             staysFilterPage = new AndroidStaysFilterPage();
             experiencesFilterPage = new AndroidExperiencesFilterPage();
             wishlistPage = new AndroidWishlistPage();
+            settingsPage = new AndroidSettingsPage();
+            currencyPage = new AndroidCurrencyPage();
         }
     }
 }

@@ -3,6 +3,7 @@ package com.automation.pages.web;
 import com.automation.pages.common.BasePage;
 import com.automation.pages.ui.HomePage;
 import com.automation.utils.ConfigReader;
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -61,6 +62,12 @@ public class WebHomePage extends BasePage implements HomePage {
 
     @FindBy(xpath = "//div[text()='Wishlists']")
     WebElement wishlistIcon;
+
+    @FindBy(xpath = "//button[@aria-label='Choose a language and currency']")
+    WebElement globeIcon;
+
+    @FindBy(css = "._11jcbg2")
+    WebElement placePrice;
 
     String XPATH_DATE_VALUE = "//button[contains(@aria-label,'%s,')]";
 
@@ -171,15 +178,35 @@ public class WebHomePage extends BasePage implements HomePage {
     }
 
     @Override
+    public boolean isCurrencyApplied() {
+        String currencySymbol = placePrice.getText().replaceAll("[^\\p{Sc}]","");
+        System.out.println(currencySymbol);
+        return currencySymbol.equals(ConfigReader.getConfigValue("currency.symbol"));
+    }
+
+    @Override
     public void createNewWishlist(String wishlistName) {
         createNewWishlistButton.click();
         wishlistNameInput.sendKeys(wishlistName);
         createButton.click();
+        pause(2000);
     }
 
     @Override
     public void clickOnWishlistsIcon() {
+        userProfileIcon.click();
         wishlistIcon.click();
+    }
+
+    @Override
+    public void clickGlobeIcon(){
+        globeIcon.click();
+    }
+
+    @Override
+    public boolean isLanguageApplied(String attributeValue){
+        String langAttribute = driver.findElement(By.tagName("html")).getAttribute("lang");
+        return langAttribute.equals(attributeValue);
     }
 
 }

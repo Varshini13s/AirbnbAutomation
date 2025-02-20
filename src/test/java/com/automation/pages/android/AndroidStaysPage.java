@@ -39,7 +39,6 @@ public class AndroidStaysPage extends BasePage implements StaysPage {
     @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.airbnb.android:id/search_feed_container']/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[3]//android.view.View")
     WebElement placesDescription;
 
-
     String XPATH_SEARCH_RESULT = "//android.widget.TextView[@text='%s']";
 
     String XPATH_APPLIED_HOST_LANGUAGE = "//android.widget.TextView[contains(@text,'%s')]";

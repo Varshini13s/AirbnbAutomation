@@ -17,8 +17,8 @@ public class StaysFilterSteps extends BaseSteps{
         staysFilterPage.getFilterResult();
     }
 
-    @And("user selects language {string}")
-    public void userSelectsLanguage(String hostLanguage) {
+    @And("user selects host language {string}")
+    public void userSelectsHostLanguage(String hostLanguage) {
         staysFilterPage.selectHostLanguage(ConfigReader.getConfigValue(hostLanguage));
         staysFilterPage.getFilterResult();
     }

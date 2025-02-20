@@ -28,4 +28,19 @@ public class WishlistSteps extends BaseSteps {
     public void verifyThePlaceIsRemovedFromTheWishlist() {
         Assert.assertTrue(wishlistPage.isPlaceRemovedFromWishlist());
     }
+
+    @When("user click on edit button")
+    public void userClickOnEditButton() {
+        wishlistPage.clickEditButton();
+    }
+
+    @And("user delete wishlist")
+    public void userDeleteWishlist() {
+        wishlistPage.deleteWishlist();
+    }
+
+    @Then("verify the saved wishlist {string} is removed")
+    public void verifyTheSavedWishlistIsRemoved(String wishlistName) {
+        Assert.assertFalse(wishlistPage.isWishlistNameDisplayed(ConfigReader.getConfigValue(wishlistName)));
+    }
 }

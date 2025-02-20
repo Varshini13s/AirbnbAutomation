@@ -64,6 +64,33 @@ public class AndroidHomePage extends BasePage implements HomePage {
     @FindBy(xpath = "//android.widget.TextView[@text='Choose dates']")
     WebElement chooseDateButton;
 
+    @FindBy(xpath = "//android.widget.TextView[@text='Settings']")
+    WebElement settingsOption;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Explore']")
+    WebElement exploreIcon;
+
+    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.airbnb.android:id/search_feed_container']/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[3]//android.view.View")
+    WebElement placesDescription;
+
+    @FindBy(id = "com.airbnb.android:id/bingo_toolbar_wishlist_button")
+    WebElement addToWishlistIcon;
+
+    @FindBy(css = ".android.widget.EditText")
+    WebElement wishlistInput;
+
+    @FindBy(id = "com.airbnb.android:id/secondary_button")
+    WebElement clearButton;
+
+    @FindBy(id = "com.airbnb.android:id/primary_button")
+    WebElement createButton;
+
+    @FindBy(id = "com.airbnb.android:id/bingo_toolbar_nav_button")
+    WebElement navigateBackButton;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Wishlists']")
+    WebElement wishlistIcon;
+
     String XPATH_DESTINATION_OPTION = "//android.widget.TextView[contains(@text,'%s')]";
 
     String XPATH_INCREASE_BUTTON = "//android.widget.TextView[@text='%s']/..//following-sibling::android.widget.Button[@content-desc='increment']";
@@ -147,18 +174,22 @@ public class AndroidHomePage extends BasePage implements HomePage {
     }
 
     @Override
-    public void createNewWishlist(String wishlist) {
-
+    public void clickOnAddToWishlistButton() {
+        placesDescription.click();
+        addToWishlistIcon.click();
     }
 
     @Override
-    public void clickOnAddToWishlistButton() {
-
+    public void createNewWishlist(String wishlist) {
+        clearButton.click();
+        wishlistInput.sendKeys(wishlist);
+        createButton.click();
+        navigateBackButton.click();
     }
 
     @Override
     public void clickOnWishlistsIcon() {
-
+        wishlistIcon.click();
     }
 
     @Override
@@ -197,4 +228,23 @@ public class AndroidHomePage extends BasePage implements HomePage {
     public boolean isLogoutSuccessful() {
         return loginIcon.isDisplayed();
     }
+
+    @Override
+    public void clickOnSettings(){
+        settingsOption.click();
+    }
+
+    @Override
+    public void clickExploreIcon(){
+        exploreIcon.click();
+    }
+
+    @Override
+    public boolean isCurrencyApplied(){
+        String placesDescriptionString = placesDescription.getAttribute("content-desc");
+        String currencySymbol =placesDescriptionString.replaceAll("[^\\p{Sc}]","");
+
+        return currencySymbol.equals(ConfigReader.getConfigValue("currency.symbol"));
+    }
+
 }

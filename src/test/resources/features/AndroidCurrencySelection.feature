@@ -4,11 +4,12 @@ Feature: Validate Currency Selection Functionality
     When user open website or application
     Then verify user is on home page
     When user click on profile icon
-    And user click on payments option
-    Then verify user is on payments page
-    When user click on currency "<currency.option>"
-    And user select a currency
-    Then verify currency is applied
+    And user click on settings option
+    Then verify user is on settings page
+    When user click on currency option
+    And user select currency "<currency.option>"
+    When user navigates to home page
+    Then verify currency is displayed
 
 
     Examples:

@@ -35,4 +35,22 @@ public interface HomePage {
     void clickOnWishlistsIcon();
 
     void clickOnAddToWishlistButton();
+
+    default void clickOnSettings(){
+
+    }
+
+    default void clickExploreIcon(){
+
+    }
+
+    boolean isCurrencyApplied();
+
+    default void clickGlobeIcon(){
+
+    }
+
+    default boolean isLanguageApplied(String attributeValue){
+        return false;
+    }
 }

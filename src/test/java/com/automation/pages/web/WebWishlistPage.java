@@ -24,6 +24,8 @@ public class WebWishlistPage extends BasePage implements WishlistPage {
 
     String XPATH_SAVED_WISHLIST_NAME = "//div[@data-testid='listing-card-title' and text()='%s']";
 
+    String XPATH_SAVED_WISHLIST_CONTAINER = "//div[@data-testid='card-container']//a[contains(@aria-label,'%s')]";
+
     @Override
     public boolean isWishlistNameDisplayed(String wishlistName) {
         if(isDisplayed(recentlyViewedPopup)){
@@ -42,7 +44,7 @@ public class WebWishlistPage extends BasePage implements WishlistPage {
 
     @Override
     public void clickOnWishlist(String wishlistName) {
-        WebElement savedWishlistName = driver.findElement(By.xpath(String.format(XPATH_SAVED_WISHLIST_NAME, wishlistName)));
+        WebElement savedWishlistName = driver.findElement(By.xpath(String.format(XPATH_SAVED_WISHLIST_CONTAINER, wishlistName)));
         savedWishlistName.click();
     }
 
@@ -50,6 +52,7 @@ public class WebWishlistPage extends BasePage implements WishlistPage {
     public void deselectWishlistButton() {
         removeFromWishlistButton.click();
         backButton.click();
+        pause(2000);
     }
 
     @Override
