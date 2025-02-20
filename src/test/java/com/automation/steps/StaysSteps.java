@@ -23,16 +23,4 @@ public class StaysSteps extends BaseSteps {
         staysPage.scrollOverMap();
         Assert.assertTrue(staysPage.isPriceFilterApplied());
     }
-
-    @Then("verify amenities filter is applied to places")
-    public void verifyAmenitiesFilterIsAppliedToPlaces() {
-        staysPage.scrollOverMap();
-        Assert.assertTrue(staysPage.isAmenitiesFilterApplied());
-    }
-
-    @Then("verify host language filter is applied to places")
-    public void verifyHostLanguageFilterIsAppliedToPlaces() {
-        staysPage.scrollOverMap();
-        Assert.assertTrue(staysPage.isHostLanguageFilterApplied());
-    }
 }

@@ -4,6 +4,7 @@ import com.automation.pages.android.*;
 import com.automation.pages.ui.*;
 import com.automation.pages.web.*;
 import com.automation.utils.ConfigReader;
+import io.cucumber.java.en_scouse.An;
 
 public class BaseSteps {
 
@@ -18,6 +19,7 @@ public class BaseSteps {
     CurrencyPage currencyPage;
     CurrencyLanguagePage currencyLanguagePage;
     FeedbackPage feedbackPage;
+    PlaceDescriptionPage placeDescriptionPage;
 
     public BaseSteps(){
         if(ConfigReader.getConfigValue("platform").equals("web")){
@@ -30,6 +32,7 @@ public class BaseSteps {
             wishlistPage = new WebWishlistPage();
             currencyLanguagePage = new WebCurrencyLanguagePage();
             feedbackPage = new WebFeedbackPage();
+            placeDescriptionPage = new WebPlaceDescriptionPage();
         }
         else{
             homePage = new AndroidHomePage();
@@ -42,6 +45,7 @@ public class BaseSteps {
             settingsPage = new AndroidSettingsPage();
             currencyPage = new AndroidCurrencyPage();
             feedbackPage = new AndroidFeedbackPage();
+            placeDescriptionPage = new AndroidPlaceDescriptionPage();
         }
     }
 }
