@@ -1,3 +1,4 @@
+@mobile
 Feature: Validate Currency Selection Functionality
 
   Scenario Outline: Verify user can select different currencies

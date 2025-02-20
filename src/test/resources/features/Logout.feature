@@ -1,3 +1,4 @@
+@web @mobile
 Feature: Validate Logout Functionality
 
   Background:

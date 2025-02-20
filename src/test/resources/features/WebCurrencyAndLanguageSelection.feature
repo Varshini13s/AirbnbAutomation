@@ -1,3 +1,4 @@
+@web
 Feature: Validate Currency And Language Selection Functionality
 
   Background:
