@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.Duration;
 
 public class AndroidHomePage extends BasePage implements HomePage {
 
@@ -91,6 +90,9 @@ public class AndroidHomePage extends BasePage implements HomePage {
     @FindBy(xpath = "//android.widget.TextView[@text='Wishlists']")
     WebElement wishlistIcon;
 
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='com.airbnb.android:id/base_row_text' and @text='Give us feedback']")
+    WebElement giveUsFeedbackOption;
+
     String XPATH_DESTINATION_OPTION = "//android.widget.TextView[contains(@text,'%s')]";
 
     String XPATH_INCREASE_BUTTON = "//android.widget.TextView[@text='%s']/..//following-sibling::android.widget.Button[@content-desc='increment']";
@@ -109,6 +111,11 @@ public class AndroidHomePage extends BasePage implements HomePage {
     @Override
     public boolean isHomePageDisplayed() {
         return loginIcon.isDisplayed() && searchInputBar.isDisplayed();
+    }
+
+    @Override
+    public void clickLoginIcon() {
+        loginIcon.click();
     }
 
     @Override
@@ -193,18 +200,17 @@ public class AndroidHomePage extends BasePage implements HomePage {
     }
 
     @Override
-    public void clickProfileIcon() {
-        loginIcon.click();
-    }
-
-    @Override
     public void clickLoginOption() {
         loginButton.click();
     }
 
     @Override
-    public boolean isLoginSuccessful() {
+    public void clickProfileIcon() {
         profileIcon.click();
+    }
+
+    @Override
+    public boolean isLoginSuccessful() {
         return showProfileText.isDisplayed();
     }
 
@@ -246,5 +252,18 @@ public class AndroidHomePage extends BasePage implements HomePage {
 
         return currencySymbol.equals(ConfigReader.getConfigValue("currency.symbol"));
     }
+
+    @Override
+    public void clickFeedbackOption() {
+        while (!isDisplayed(giveUsFeedbackOption)){
+            int x = profileLayout.getLocation().getX();
+            int y = profileLayout.getLocation().getY();
+            int height = profileLayout.getSize().getHeight();
+            int width = profileLayout.getSize().getWidth();
+            scroll(x+width/2,height,x+width/2,y);
+        }
+        giveUsFeedbackOption.click();
+    }
+
 
 }

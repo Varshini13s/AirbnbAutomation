@@ -17,6 +17,7 @@ public class BaseSteps {
     SettingsPage settingsPage;
     CurrencyPage currencyPage;
     CurrencyLanguagePage currencyLanguagePage;
+    FeedbackPage feedbackPage;
 
     public BaseSteps(){
         if(ConfigReader.getConfigValue("platform").equals("web")){
@@ -28,6 +29,7 @@ public class BaseSteps {
             experiencesFilterPage = new WebExperiencesFilterPage();
             wishlistPage = new WebWishlistPage();
             currencyLanguagePage = new WebCurrencyLanguagePage();
+            feedbackPage = new WebFeedbackPage();
         }
         else{
             homePage = new AndroidHomePage();
@@ -39,6 +41,7 @@ public class BaseSteps {
             wishlistPage = new AndroidWishlistPage();
             settingsPage = new AndroidSettingsPage();
             currencyPage = new AndroidCurrencyPage();
+            feedbackPage = new AndroidFeedbackPage();
         }
     }
 }

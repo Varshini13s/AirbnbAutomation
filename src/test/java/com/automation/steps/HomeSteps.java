@@ -20,9 +20,9 @@ public class HomeSteps extends BaseSteps {
         Assert.assertTrue(homePage.isHomePageDisplayed());
     }
 
-    @When("user click on profile icon")
-    public void userClickOnProfileIcon() {
-        homePage.clickProfileIcon();
+    @When("user click on login icon")
+    public void userClickOnLoginIcon() {
+        homePage.clickLoginIcon();
     }
 
     @And("user click on login option")
@@ -32,7 +32,13 @@ public class HomeSteps extends BaseSteps {
 
     @Then("verify login is successful")
     public void verifyLoginIsSuccessful() {
+        homePage.clickProfileIcon();
         Assert.assertTrue(homePage.isLoginSuccessful());
+    }
+
+    @When("user click on profile icon")
+    public void userClickOnProfileIcon() {
+        homePage.clickProfileIcon();
     }
 
     @When("user click on logout option")

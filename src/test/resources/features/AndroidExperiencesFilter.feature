@@ -1,4 +1,4 @@
-@android
+@mobile
 Feature: Validate Experiences Filter Options
   Background:
     Given user open website or application

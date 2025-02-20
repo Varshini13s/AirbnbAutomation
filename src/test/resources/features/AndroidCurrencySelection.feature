@@ -4,7 +4,7 @@ Feature: Validate Currency Selection Functionality
   Scenario Outline: Verify user can select different currencies
     When user open website or application
     Then verify user is on home page
-    When user click on profile icon
+    When user click on login icon
     And user click on settings option
     Then verify user is on settings page
     When user click on currency option

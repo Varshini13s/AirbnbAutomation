@@ -3,7 +3,7 @@ Feature: Validate Feedback Functionality
   Background:
     Given user open website or application
     Then verify user is on home page
-    When user click on profile icon
+    When user click on login icon
     And user click on login option
     Then verify login popup is displayed
     When user selects the country "country.name" with code "country.code"
@@ -15,7 +15,7 @@ Feature: Validate Feedback Functionality
     When user click on profile icon
     And click on give us feedback option
     Then verify user is on feedback page
-    When user select feedback type "feedback.type"
-    And user select a feature option "feedback.feature.option"
+    When user select feedback theme "feedback.theme"
+    And user select feedback type "feedback.type"
     And user gives feedback message "feedback.message"
     Then verify feedback is shared successfully

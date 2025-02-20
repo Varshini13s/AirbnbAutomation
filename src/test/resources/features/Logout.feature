@@ -4,7 +4,7 @@ Feature: Validate Logout Functionality
   Background:
     Given user open website or application
     Then verify user is on home page
-    When user click on profile icon
+    When user click on login icon
     And user click on login option
     Then verify login popup is displayed
     When user selects the country "country.name" with code "country.code"
