@@ -23,4 +23,20 @@ public class StaysSteps extends BaseSteps {
         staysPage.scrollOverMap();
         Assert.assertTrue(staysPage.isPriceFilterApplied());
     }
+
+    @When("user enable display total price option")
+    public void userEnableDisplayTotalPriceOption() {
+        staysPage.enableDisplayTotalPrice();
+    }
+
+    @And("user get price of first place from stays page")
+    public void userGetPriceOfFirstPlaceFromStaysPage() {
+        staysPage.getPrice();
+    }
+
+    @When("user click on first place")
+    public void userClickOnFirstPlace() {
+        staysPage.clickFirstPlace();
+    }
+
 }

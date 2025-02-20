@@ -10,5 +10,9 @@ public interface StaysPage {
     default void scrollOverMap() {
     }
 
+    void enableDisplayTotalPrice();
 
+    void getPrice();
+
+    void clickFirstPlace();
 }

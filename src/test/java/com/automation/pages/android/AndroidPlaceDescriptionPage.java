@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class AndroidPlaceDescriptionPage extends BasePage implements PlaceDescriptionPage {
 
     @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.airbnb.android:id/search_feed_container']/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[3]")
@@ -23,6 +25,18 @@ public class AndroidPlaceDescriptionPage extends BasePage implements PlaceDescri
 
     @FindBy(xpath = "//android.widget.ScrollView")
     WebElement appliedAmenitiesLayout;
+
+    @FindBy(id = "com.airbnb.android:id/n2_dls_action_footer_title")
+    WebElement priceBeforeTaxes;
+
+    @FindBy(id = "com.airbnb.android:id/n2_dls_action_footer_gradient_button")
+    WebElement reserveButton;
+
+    @FindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.airbnb.android:id/price_item_container']//android.widget.TextView[@resource-id='com.airbnb.android:id/price_item_info']")
+    List<WebElement> accommodationTaxList;
+
+    @FindBy(xpath = "//android.view.View[@resource-id='com.airbnb.android:id/total_divider']/following-sibling::android.widget.LinearLayout//android.widget.TextView[@resource-id='com.airbnb.android:id/price_item_info']")
+    WebElement totalAmount;
 
     String XPATH_APPLIED_HOST_LANGUAGE = "//android.widget.TextView[contains(@text,'%s')]";
 
@@ -63,6 +77,30 @@ public class AndroidPlaceDescriptionPage extends BasePage implements PlaceDescri
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean isPriceConstant() {
+        String priceString = priceBeforeTaxes.getAttribute("content-desc");
+        String splittedStr[] = priceString.split("total")[0].split(" ");
+        String price = splittedStr[splittedStr.length - 1].replaceAll("[^0-9]", "");
+        return price.equals(ConfigReader.getConfigValue("first.place.price"));
+    }
+
+    @Override
+    public void clickReserveButton() {
+        reserveButton.click();
+    }
+
+    double accommodationTaxPrice = 0.0;
+
+    @Override
+    public boolean verifyTotalPrice() {
+        for(int i=0;i< accommodationTaxList.size();i++){
+            accommodationTaxPrice += Double.parseDouble(accommodationTaxList.get(i).getText().replaceAll("[^0-9.]", ""));
+        }
+        double totalPrice = Double.parseDouble(totalAmount.getText().replaceAll("[^0-9.]",""));
+        return accommodationTaxPrice == totalPrice;
     }
 
     public void scrollPageDetailsLayout(){

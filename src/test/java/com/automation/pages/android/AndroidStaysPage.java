@@ -21,6 +21,9 @@ public class AndroidStaysPage extends BasePage implements StaysPage {
     @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.airbnb.android:id/search_feed_container']/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[3]//android.view.View")
     WebElement placesDescription;
 
+    @FindBy(xpath = "//android.widget.TextView[@text='Display total price']/../following-sibling::android.view.View[1]")
+    WebElement displayTotalPriceButton;
+
     String XPATH_SEARCH_RESULT = "//android.widget.TextView[@text='%s']";
 
     @Override
@@ -56,6 +59,26 @@ public class AndroidStaysPage extends BasePage implements StaysPage {
         int width = staysPageContainer.getSize().getWidth();
         int height = staysPageContainer.getSize().getHeight();
         scroll(x + width / 2, y, x + width / 2, 0);
+    }
+
+    @Override
+    public void enableDisplayTotalPrice() {
+        scrollOverMap();
+        displayTotalPriceButton.click();
+        pause(3000);
+    }
+
+    @Override
+    public void getPrice() {
+        String placesDescriptionString = placesDescription.getAttribute("content-desc");
+        String splittedStr[] = placesDescriptionString.split("total")[0].split(" ");
+        String price = splittedStr[splittedStr.length - 1].replaceAll("[^0-9]", "");
+        ConfigReader.setConfigValue("first.place.price",price);
+    }
+
+    @Override
+    public void clickFirstPlace() {
+        placesDescription.click();
     }
 }
 
