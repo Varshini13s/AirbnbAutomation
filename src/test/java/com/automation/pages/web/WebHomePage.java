@@ -3,7 +3,6 @@ package com.automation.pages.web;
 import com.automation.pages.common.BasePage;
 import com.automation.pages.ui.HomePage;
 import com.automation.utils.ConfigReader;
-import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +11,9 @@ import java.util.List;
 
 
 public class WebHomePage extends BasePage implements HomePage {
+
+    @FindBy(xpath = "//button[@data-testid='cypress-headernav-profile']")
+    WebElement userLoginIcon;
 
     @FindBy(xpath = "//button[@data-tooltip-anchor-id='headernav-profile-button']//div[contains(@class,'fs7xov7')]")
     WebElement userProfileIcon;
@@ -69,6 +71,12 @@ public class WebHomePage extends BasePage implements HomePage {
     @FindBy(css = "._11jcbg2")
     WebElement placePrice;
 
+    @FindBy(xpath = "//div[text()='Help Centre']")
+    WebElement helpCentreOption;
+
+    @FindBy(xpath = "//a[@data-testid='explore-more-feedback']")
+    WebElement giveUsFeedbackOption;
+
     String XPATH_DATE_VALUE = "//button[contains(@aria-label,'%s,')]";
 
     String XPATH_INCREASE_BUTTON = "//button[@data-testid='stepper-%s-increase-button']";
@@ -79,19 +87,23 @@ public class WebHomePage extends BasePage implements HomePage {
 
     @Override
     public boolean isHomePageDisplayed() {
-        return userProfileIcon.isDisplayed() && searchButton.isDisplayed();
+        return userLoginIcon.isDisplayed() && searchButton.isDisplayed();
     }
 
-    public void clickProfileIcon() {
-        userProfileIcon.click();
+    public void clickLoginIcon() {
+        userLoginIcon.click();
     }
 
     public void clickLoginOption() {
         loginOption.click();
     }
 
-    public boolean isLoginSuccessful() {
+    @Override
+    public void clickProfileIcon() {
         userProfileIcon.click();
+    }
+
+    public boolean isLoginSuccessful() {
         return logoutOption.isDisplayed() && accountOption.isDisplayed();
     }
 
@@ -103,7 +115,7 @@ public class WebHomePage extends BasePage implements HomePage {
     @Override
     public boolean isLogoutSuccessful() {
         pause(2000);
-        userProfileIcon.click();
+        userLoginIcon.click();
         return loginOption.isDisplayed();
     }
 
@@ -194,7 +206,7 @@ public class WebHomePage extends BasePage implements HomePage {
 
     @Override
     public void clickOnWishlistsIcon() {
-        userProfileIcon.click();
+        userLoginIcon.click();
         wishlistIcon.click();
     }
 
@@ -207,6 +219,12 @@ public class WebHomePage extends BasePage implements HomePage {
     public boolean isLanguageApplied(String attributeValue){
         String langAttribute = driver.findElement(By.tagName("html")).getAttribute("lang");
         return langAttribute.equals(attributeValue);
+    }
+
+    @Override
+    public void clickFeedbackOption() {
+        helpCentreOption.click();
+        giveUsFeedbackOption.click();
     }
 
 }

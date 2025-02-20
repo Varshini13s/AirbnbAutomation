@@ -4,7 +4,7 @@ public interface HomePage {
 
     void openApplication();
 
-    void clickProfileIcon();
+    void clickLoginIcon();
 
     void clickLoginOption();
 
@@ -53,4 +53,8 @@ public interface HomePage {
     default boolean isLanguageApplied(String attributeValue){
         return false;
     }
+
+    void clickFeedbackOption();
+
+    void clickProfileIcon();
 }
