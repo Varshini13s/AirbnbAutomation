@@ -12,6 +12,7 @@ Feature: Validate Wishlist Functionality
     Then verify otp popup is displayed
     When user enter the otp
 
+  @web @mobile
   Scenario: Verify user can add a place to wishlist
     When user click on add to wishlist button on the image
     And user create new wishlist with name "wishlist.name"

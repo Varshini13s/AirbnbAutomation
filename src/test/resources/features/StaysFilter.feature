@@ -1,3 +1,4 @@
+@web @mobile
 Feature: Validate Stays Filter Options
 
   Background:

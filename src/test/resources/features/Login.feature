@@ -1,3 +1,4 @@
+@web @mobile
 Feature: Validate Login Feature
 
   Background:
