@@ -103,6 +103,16 @@ public class WebHomePage extends BasePage implements HomePage {
         userProfileIcon.click();
     }
 
+    @Override
+    public void getFirstPlaceDetails() {
+
+    }
+
+    @Override
+    public void clickMapButton() {
+
+    }
+
     public boolean isLoginSuccessful() {
         return logoutOption.isDisplayed() && accountOption.isDisplayed();
     }

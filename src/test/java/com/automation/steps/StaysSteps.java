@@ -29,8 +29,8 @@ public class StaysSteps extends BaseSteps {
         staysPage.enableDisplayTotalPrice();
     }
 
-    @And("user get price of first place from stays page")
-    public void userGetPriceOfFirstPlaceFromStaysPage() {
+    @And("get price of first place from stays page")
+    public void getPriceOfFirstPlaceFromStaysPage() {
         staysPage.getPrice();
     }
 

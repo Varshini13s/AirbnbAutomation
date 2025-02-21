@@ -20,6 +20,7 @@ public class BaseSteps {
     CurrencyLanguagePage currencyLanguagePage;
     FeedbackPage feedbackPage;
     PlaceDescriptionPage placeDescriptionPage;
+    MapPage mapPage;
 
     public BaseSteps(){
         if(ConfigReader.getConfigValue("platform").equals("web")){
@@ -33,6 +34,7 @@ public class BaseSteps {
             currencyLanguagePage = new WebCurrencyLanguagePage();
             feedbackPage = new WebFeedbackPage();
             placeDescriptionPage = new WebPlaceDescriptionPage();
+            mapPage = new WebMapPage();
         }
         else{
             homePage = new AndroidHomePage();
@@ -46,6 +48,7 @@ public class BaseSteps {
             currencyPage = new AndroidCurrencyPage();
             feedbackPage = new AndroidFeedbackPage();
             placeDescriptionPage = new AndroidPlaceDescriptionPage();
+            mapPage = new AndroidMapPage();
         }
     }
 }
