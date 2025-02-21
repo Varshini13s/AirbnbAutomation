@@ -10,7 +10,7 @@ Feature: Validate Total Price Including Taxes
 
   Scenario: Verify price consistency of place across pages
     When user enable display total price option
-    And user get price of first place from stays page
+    And get price of first place from stays page
     When user click on first place
     Then verify price is same in place description page
     When user click on reserve button

@@ -57,4 +57,8 @@ public interface HomePage {
     void clickFeedbackOption();
 
     void clickProfileIcon();
+
+    void getFirstPlaceDetails();
+
+    void clickMapButton();
 }

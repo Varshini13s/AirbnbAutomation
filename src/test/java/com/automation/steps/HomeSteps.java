@@ -122,4 +122,14 @@ public class HomeSteps extends BaseSteps {
     public void clickOnGiveUsFeedbackOption() {
         homePage.clickFeedbackOption();
     }
+
+    @And("get details of first place")
+    public void getDetailsOfFirstPlace() {
+        homePage.getFirstPlaceDetails();
+    }
+
+    @When("user click on map button")
+    public void userClickOnMapButton() {
+        homePage.clickMapButton();
+    }
 }

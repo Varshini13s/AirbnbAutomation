@@ -93,6 +93,9 @@ public class AndroidHomePage extends BasePage implements HomePage {
     @FindBy(xpath = "//android.widget.TextView[@resource-id='com.airbnb.android:id/base_row_text' and @text='Give us feedback']")
     WebElement giveUsFeedbackOption;
 
+    @FindBy(id = "com.airbnb.android:id/map_pill")
+    WebElement mapButton;
+
     String XPATH_DESTINATION_OPTION = "//android.widget.TextView[contains(@text,'%s')]";
 
     String XPATH_INCREASE_BUTTON = "//android.widget.TextView[@text='%s']/..//following-sibling::android.widget.Button[@content-desc='increment']";
@@ -263,6 +266,24 @@ public class AndroidHomePage extends BasePage implements HomePage {
             scroll(x+width/2,height,x+width/2,y);
         }
         giveUsFeedbackOption.click();
+    }
+
+    @Override
+    public void getFirstPlaceDetails() {
+        String placesDescriptionString = placesDescription.getAttribute("content-desc");
+        String splittedStr[] = placesDescriptionString.split("per night")[0].split(" ");
+        String price = splittedStr[splittedStr.length - 1].replaceAll("[^0-9,]", "");
+        ConfigReader.setConfigValue("place.price",price);
+        System.out.println(price);
+        String cityCountryPattern = "[A-Za-z]+,\\s[A-Za-z]+";
+        String cityCountry = placesDescriptionString.replaceAll(".*?(" + cityCountryPattern + ").*", "$1").trim();
+        ConfigReader.setConfigValue("place.city.country",cityCountry);
+        System.out.println(cityCountry);
+    }
+
+    @Override
+    public void clickMapButton() {
+        mapButton.click();
     }
 
 

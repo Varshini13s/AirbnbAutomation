@@ -80,7 +80,7 @@ public class BasePage {
 
     public boolean isDisplayed(String xpath) {
         try {
-            setImplicitWait(5);
+            setImplicitWait(8);
             return driver.findElement(By.xpath(xpath)).isDisplayed();
         } catch (Exception e) {
             return false;
