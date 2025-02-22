@@ -68,7 +68,7 @@ public class WebHomePage extends BasePage implements HomePage {
     @FindBy(xpath = "//button[@aria-label='Choose a language and currency']")
     WebElement globeIcon;
 
-    @FindBy(css = "._11jcbg2")
+    @FindBy(css = "._hb913q")
     WebElement placePrice;
 
     @FindBy(xpath = "//div[text()='Help Centre']")
