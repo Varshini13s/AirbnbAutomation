@@ -48,11 +48,6 @@ public class BasePage {
         }
     }
 
-    public void clickByJs(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click()", element);
-    }
-
     public boolean isDisplayed(WebElement element) {
         try {
             setImplicitWait(10);

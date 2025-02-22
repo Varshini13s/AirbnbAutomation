@@ -26,6 +26,7 @@ Feature: Validate Currency And Language Selection Functionality
     Then verify language tab is selected
     When user selects language "<language.name>"
     Then verify language is applied using "<attribute.value>"
+
     Examples:
       | language.name | attribute.value |
       | हिन्दी           | hi              |

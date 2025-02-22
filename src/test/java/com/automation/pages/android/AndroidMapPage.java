@@ -14,6 +14,7 @@ public class AndroidMapPage extends BasePage implements MapPage {
 
     @Override
     public boolean isLocationPriceMarkerDisplayed() {
+        pause(3000);
         return isDisplayed(String.format(XPATH_PRICE_MARKER, ConfigReader.getConfigValue("place.price")));
     }
 
