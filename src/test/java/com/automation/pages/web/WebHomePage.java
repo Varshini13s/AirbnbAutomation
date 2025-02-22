@@ -36,8 +36,6 @@ public class WebHomePage extends BasePage implements HomePage {
     @FindBy(id = "bigsearch-query-location-input")
     WebElement destinationInput;
 
-    String XPATH_DESTINATION_OPTION = "//b[@class='b1viecjw atm_cs_10d11i2 dir dir-ltr' and contains(text(),'%s')]";
-
     @FindBy(xpath = "//div[@data-testid='structured-search-input-field-dates-panel']//h2")
     WebElement monthAndYear;
 
@@ -68,14 +66,22 @@ public class WebHomePage extends BasePage implements HomePage {
     @FindBy(xpath = "//button[@aria-label='Choose a language and currency']")
     WebElement globeIcon;
 
-    @FindBy(css = "._11jcbg2")
-    WebElement placePrice;
+    @FindBy(css = "._hb913q")
+    List<WebElement> placePrice;
 
     @FindBy(xpath = "//div[text()='Help Centre']")
     WebElement helpCentreOption;
 
     @FindBy(xpath = "//a[@data-testid='explore-more-feedback']")
     WebElement giveUsFeedbackOption;
+
+    @FindBy(xpath = "//div[@data-testid='listing-card-title']")
+    List<WebElement> cityCountry;
+
+    @FindBy(xpath = "//button//span[contains(text(),'map')]")
+    WebElement mapButton;
+
+    String XPATH_DESTINATION_OPTION = "//b[@class='b1viecjw atm_cs_10d11i2 dir dir-ltr' and contains(text(),'%s')]";
 
     String XPATH_DATE_VALUE = "//button[contains(@aria-label,'%s,')]";
 
@@ -101,16 +107,6 @@ public class WebHomePage extends BasePage implements HomePage {
     @Override
     public void clickProfileIcon() {
         userProfileIcon.click();
-    }
-
-    @Override
-    public void getFirstPlaceDetails() {
-
-    }
-
-    @Override
-    public void clickMapButton() {
-
     }
 
     public boolean isLoginSuccessful() {
@@ -202,7 +198,7 @@ public class WebHomePage extends BasePage implements HomePage {
 
     @Override
     public boolean isCurrencyApplied() {
-        String currencySymbol = placePrice.getText().replaceAll("[^\\p{Sc}]","");
+        String currencySymbol = placePrice.get(1).getText().replaceAll("[^\\p{Sc}]","");
         System.out.println(currencySymbol);
         return currencySymbol.equals(ConfigReader.getConfigValue("currency.symbol"));
     }
@@ -236,6 +232,21 @@ public class WebHomePage extends BasePage implements HomePage {
     public void clickFeedbackOption() {
         helpCentreOption.click();
         giveUsFeedbackOption.click();
+    }
+
+    @Override
+    public void getFirstPlaceDetails() {
+        pause(2000);
+        String price = placePrice.get(1).getText().replaceAll("[^0-9,]","");
+        ConfigReader.setConfigValue("place.price",price);
+        System.out.println(price);
+        ConfigReader.setConfigValue("place.city.country",cityCountry.get(1).getText());
+        System.out.println(cityCountry.get(1).getText());
+    }
+
+    @Override
+    public void clickMapButton() {
+        mapButton.click();
     }
 
 }
