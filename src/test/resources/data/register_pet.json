@@ -1,0 +1,18 @@
+{
+  "id": 7834,
+  "category": {
+    "id": 1,
+    "name": "husky"
+  },
+  "name": "bittu",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "name": "cute"
+    }
+  ],
+  "status": "available"
+}
