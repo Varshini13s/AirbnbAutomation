@@ -18,7 +18,7 @@ public class AndroidStaysPage extends BasePage implements StaysPage {
     @FindBy(id = "com.airbnb.android:id/search_feed_container")
     WebElement staysPageContainer;
 
-    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.airbnb.android:id/search_feed_container']/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[3]//android.view.View")
+    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.airbnb.android:id/search_feed_container']/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]//android.view.View")
     WebElement placesDescription;
 
     @FindBy(xpath = "//android.widget.TextView[@text='Display total price']/../following-sibling::android.view.View[1]")

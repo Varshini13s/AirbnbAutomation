@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AndroidPlaceDescriptionPage extends BasePage implements PlaceDescriptionPage {
 
-    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.airbnb.android:id/search_feed_container']/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[3]")
+    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id='com.airbnb.android:id/search_feed_container']/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]")
     WebElement placesLayout;
 
     @FindBy(xpath = "//android.widget.TextView[@content-desc='Go to Host profile']")
