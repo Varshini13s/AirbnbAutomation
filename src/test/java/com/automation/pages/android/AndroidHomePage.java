@@ -113,7 +113,7 @@ public class AndroidHomePage extends BasePage implements HomePage {
 
     @Override
     public boolean isHomePageDisplayed() {
-        return loginIcon.isDisplayed() && searchInputBar.isDisplayed();
+        return searchInputBar.isDisplayed() && wishlistIcon.isDisplayed();
     }
 
     @Override
