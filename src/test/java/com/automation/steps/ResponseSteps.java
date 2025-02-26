@@ -1,5 +1,6 @@
 package com.automation.steps;
 
+import com.automation.pojo.CreateOrderPojo;
 import com.automation.utils.ConfigReader;
 import com.automation.utils.RestAssuredUtils;
 import io.cucumber.java.en.And;
@@ -29,5 +30,19 @@ public class ResponseSteps {
     public void storeInto(String jsonPath, String configKey) {
         String value = RestAssuredUtils.getResponseFieldValue(jsonPath);
         ConfigReader.setConfigValue(configKey, value);
+    }
+
+    @And("verify response body matches request body of create order")
+    public void verifyResponseBodyMatchesRequestBodyOfCreateOrder() {
+        CreateOrderPojo requestPojo = (CreateOrderPojo) ConfigReader.getObject("create.order.pojo");
+        CreateOrderPojo responsePojo = RestAssuredUtils.getResponse().as(CreateOrderPojo.class);
+        Assert.assertEquals(requestPojo, responsePojo);
+    }
+
+    @And("verify response matches schema {string}")
+    public void verifyResponseMatchesSchema(String fileName) {
+        Response response = RestAssuredUtils.getResponse();
+        response.then().assertThat().
+                body(JsonSchemaValidator.matchesJsonSchemaInClasspath("data\\" + fileName));
     }
 }

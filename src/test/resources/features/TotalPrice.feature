@@ -1,3 +1,4 @@
+@web @mobile
 Feature: Validate Total Price Including Taxes
 
   Background:

@@ -4,19 +4,18 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import java.util.Date;
 
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 
-public class UpdateUserRequestPojo {
+public class CreateOrderPojo {
     int id;
-    String username;
-    String firstName;
-    String lastName;
-    String email;
-    String password;
-    String phone;
-    int userStatus;
+    int petId;
+    int quantity;
+    Date shipDate;
+    String status;
+    boolean complete;
 }

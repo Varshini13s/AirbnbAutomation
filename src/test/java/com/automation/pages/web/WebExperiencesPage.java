@@ -20,7 +20,7 @@ public class WebExperiencesPage extends BasePage implements ExperiencesPage {
     @FindBy(id = "menuItemButton-Price")
     WebElement priceFilterButton;
 
-    @FindBy(css = "._11jcbg2")
+    @FindBy(css = "._hb913q")
     List<WebElement> priceList;
 
     String XPATH_APPLIED_ACTIVITY_TYPE = "//div[@class='delcd7d atm_j3_1risgsc dir dir-ltr']//button[contains(text(),'%s')]";
