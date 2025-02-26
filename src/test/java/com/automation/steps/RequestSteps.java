@@ -1,8 +1,10 @@
 package com.automation.steps;
+import com.automation.pojo.CreateOrderPojo;
 import com.automation.pojo.UpdateUserRequestPojo;
 import com.automation.utils.ConfigReader;
 import com.automation.utils.Constants;
 import com.automation.utils.RestAssuredUtils;
+import io.cucumber.core.internal.com.fasterxml.jackson.core.JsonProcessingException;
 import io.cucumber.core.internal.com.fasterxml.jackson.databind.JsonNode;
 import io.cucumber.core.internal.com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.And;
@@ -10,6 +12,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
@@ -78,6 +81,15 @@ public class RequestSteps {
     @And("set field {string} with value {string} as form data")
     public void setFieldWithValueAsFormData(String key, String value) {
         RestAssuredUtils.setFormParameter(key, value);
+    }
+
+    @And("set request body from file {string} using pojo")
+    public void setRequestBodyFromFileUsingPojo(String fileName) throws FileNotFoundException, JsonProcessingException {
+        String body = RestAssuredUtils.getDataFromJsonFile(fileName);
+        ObjectMapper mapper = new ObjectMapper();
+        CreateOrderPojo pojo = mapper.readValue(body, CreateOrderPojo.class);
+        ConfigReader.setObject("create.order.pojo", pojo);
+        RestAssuredUtils.setBody(pojo);
     }
 }
 
