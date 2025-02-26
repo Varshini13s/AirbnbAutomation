@@ -8,7 +8,7 @@ Feature: Validate Pet Registration
     And set request body from file "register_pet.json"
     When user performs post call
     Then verify status code is 200
-    And store "id" into "pet.id"
+    And store "id" into "registration.id"
     Given user wants to call "/pet/@id" end point
     And set header "Content-Type" to "application/json"
     When user performs get call

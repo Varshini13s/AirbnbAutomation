@@ -9,6 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode
+
 public class UpdateUserRequestPojo {
     int id;
     String username;

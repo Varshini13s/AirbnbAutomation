@@ -15,12 +15,11 @@ import java.lang.reflect.Field;
 
 public class RequestSteps {
 
-
     @Given("user wants to call {string} end point")
     public void user_wants_to_call_end_point(String endPoint) throws IOException {
         RestAssuredUtils.clear();
         if (endPoint.contains("@id")) {
-            endPoint = endPoint.replace("@id", ConfigReader.getConfigValue("pet.id"));
+            endPoint = endPoint.replace("@id", ConfigReader.getConfigValue("registration.id"));
         }
         if (endPoint.contains("@username")) {
             ObjectMapper objectMapper = new ObjectMapper();
