@@ -13,6 +13,7 @@ import org.openqa.selenium.TakesScreenshot;
 import java.net.MalformedURLException;
 
 public class Hooks {
+
     @Before("@web or @mobile")
     public void setUp() {
         ConfigReader.intiConfig();
@@ -24,17 +25,17 @@ public class Hooks {
         ConfigReader.intiConfig();
         RestAssured.baseURI = ConfigReader.getConfigValue("api.url");
         RestAssured.useRelaxedHTTPSValidation();
+
     }
 
-//
-//    @After("@web or @mobile")
-//    public void cleanUp() {
-//        DriverManager.getDriver().quit();
-//    }
-//
-//    @AfterStep("@web or @mobile")
-//    public static void cleanUpAll(Scenario scenario) {
-//        byte[] screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
-//        scenario.attach(screenshot, "image/png", "Step screenshot");
-//    }
+    @After("@web or @mobile")
+    public void cleanUp() {
+        DriverManager.getDriver().quit();
+    }
+
+    @AfterStep("@web or @mobile")
+    public static void cleanUpAll(Scenario scenario) {
+        byte[] screenshot = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
+        scenario.attach(screenshot, "image/png", "Step screenshot");
+    }
 }

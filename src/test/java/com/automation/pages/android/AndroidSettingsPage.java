@@ -10,7 +10,7 @@ public class AndroidSettingsPage extends BasePage implements SettingsPage {
     @FindBy(id = "com.airbnb.android:id/title")
     WebElement settingsTitle;
 
-    @FindBy(xpath = "//android.widget.TextView[@resource-id=\"com.airbnb.android:id/info_row_title\"]")
+    @FindBy(xpath = "//android.widget.TextView[@resource-id=['com.airbnb.android:id/info_row_title']")
     WebElement currencyOption;
 
     @FindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")

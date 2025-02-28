@@ -17,5 +17,5 @@ Feature: Validate Currency Selection Functionality
       | currency.option      |
       | United States dollar |
       | Canadian dollar      |
-      | Indian rupee         |
+      | South Korean won     |
       | Euro                 |

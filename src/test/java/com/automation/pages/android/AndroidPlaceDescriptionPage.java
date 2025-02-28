@@ -92,10 +92,9 @@ public class AndroidPlaceDescriptionPage extends BasePage implements PlaceDescri
         reserveButton.click();
     }
 
-    double accommodationTaxPrice = 0.0;
-
     @Override
     public boolean verifyTotalPrice() {
+        double accommodationTaxPrice = 0.0;
         for(int i=0;i< accommodationTaxList.size();i++){
             accommodationTaxPrice += Double.parseDouble(accommodationTaxList.get(i).getText().replaceAll("[^0-9.]", ""));
         }
