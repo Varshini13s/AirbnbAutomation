@@ -37,7 +37,7 @@ public class RequestSteps {
         RestAssuredUtils.setHeader(key, value);
     }
 
-    @Given("set request body from file {string}")
+    @And("set request body from file {string}")
     public void set_request_body_from_file(String filePath) throws Exception {
         RestAssuredUtils.setBody(filePath);
     }
